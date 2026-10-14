@@ -11,6 +11,11 @@ def main() -> None:
     print(alice.display_info())
     print(bob.display_info())
 
+    # Задание 7 (средняя): Перегрузка оператора +
+    print("\n2. Перегрузка оператора + (объединение в проект):")
+    project_collab = alice + bob
+    print(project_collab)
+
 
 if __name__ == "__main__":
     main()
