@@ -111,3 +111,30 @@ class ShapeFactory:
         raise ValueError(
             f"Фигура типа '{shape_kind}' не поддерживается фабрикой."
         )
+
+
+class ExtendedList(list):
+    """Пользовательский список с дополнительными математическими методами."""
+
+    def compute_mean(self) -> float:
+        """Вычисляет среднее значение числовых элементов."""
+        numeric_items = [x for x in self if isinstance(x, (int, float))]
+        if not numeric_items:
+            return 0.0
+        return sum(numeric_items) / len(numeric_items)
+
+    def select_evens(self) -> "ExtendedList":
+        """Возвращает новый ExtendedList только с четными целыми числами."""
+        return ExtendedList(
+            x for x in self if isinstance(x, int) and x % 2 == 0
+        )
+
+    def drop_duplicates(self) -> "ExtendedList":
+        """Удаляет повторы с сохранением первоначального порядка."""
+        registry = set()
+        deduped = ExtendedList()
+        for element in self:
+            if element not in registry:
+                registry.add(element)
+                deduped.append(element)
+        return deduped
