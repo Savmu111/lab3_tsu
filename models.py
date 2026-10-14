@@ -43,3 +43,71 @@ class StudentGroup:
             f"Команда [{names}], средний рейтинг: "
             f"{self.collective_rating:.2f}"
         )
+
+
+class Shape(ABC):
+    """Абстрактная геометрическая фигура."""
+
+    @abstractmethod
+    def area(self) -> float:
+        """Расчёт площади."""
+
+    @abstractmethod
+    def perimeter(self) -> float:
+        """Расчёт периметра."""
+
+
+class Triangle(Shape):
+    """Равносторонний треугольник."""
+
+    def __init__(self, side: float) -> None:
+        if side <= 0:
+            raise ValueError("Сторона треугольника должна быть положительной.")
+        self.side = side
+
+    def area(self) -> float:
+        return (math.sqrt(3) / 4) * (self.side ** 2)
+
+    def perimeter(self) -> float:
+        return 3 * self.side
+
+
+class Ellipse(Shape):
+    """Эллипс с большой и малой полуосями."""
+
+    def __init__(self, semi_major: float, semi_minor: float) -> None:
+        if semi_major <= 0 or semi_minor <= 0:
+            raise ValueError("Полуоси эллипса должны быть положительными.")
+        self.a = semi_major
+        self.b = semi_minor
+
+    def area(self) -> float:
+        return math.pi * self.a * self.b
+
+    def perimeter(self) -> float:
+        return math.pi * (
+            3 * (self.a + self.b)
+            - math.sqrt((3 * self.a + self.b) * (self.a + 3 * self.b))
+        )
+
+
+class ShapeFactory:
+    """Фабричный метод создания экземпляров фигур."""
+
+    @classmethod
+    def produce(cls, shape_kind: str, *dimensions: float) -> Shape:
+        normalized_kind = shape_kind.strip().lower()
+
+        if normalized_kind == "triangle":
+            if len(dimensions) != 1:
+                raise ValueError("Для треугольника требуется 1 параметр.")
+            return Triangle(dimensions[0])
+
+        if normalized_kind == "ellipse":
+            if len(dimensions) != 2:
+                raise ValueError("Для эллипса требуется 2 параметра: a и b.")
+            return Ellipse(dimensions[0], dimensions[1])
+
+        raise ValueError(
+            f"Фигура типа '{shape_kind}' не поддерживается фабрикой."
+        )

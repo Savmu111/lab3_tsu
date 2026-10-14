@@ -16,6 +16,20 @@ def main() -> None:
     project_collab = alice + bob
     print(project_collab)
 
+    # Задание 4 (средняя) + Задание 2 (повышенная): Фигуры и Factory
+    print("\n3. Фабрика фигур (ShapeFactory):")
+    triangle = ShapeFactory.produce("triangle", 6.0)
+    ellipse = ShapeFactory.produce("ellipse", 5.0, 3.0)
+
+    print(
+        f"Треугольник со стороной 6: Площадь = {triangle.area():.2f}, "
+        f"Периметр = {triangle.perimeter():.2f}"
+    )
+    print(
+        f"Эллипс (5x3): Площадь = {ellipse.area():.2f}, "
+        f"Периметр = {ellipse.perimeter():.2f}"
+    )
+
 
 if __name__ == "__main__":
     main()
