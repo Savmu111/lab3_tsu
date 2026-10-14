@@ -4,19 +4,19 @@ from models import ExtendedList, ShapeFactory, Student
 def main() -> None:
     print("=== Лабораторная работа № 3 (Вариант 2) ===")
 
-    # Задание 2 (средняя): Класс Студент
+    # Задание 2: Класс Студент
     print("\n1. Класс «Студент»:")
     alice = Student("Алиса Селезнёва", "ИПМКН-21", 4.88)
     bob = Student("Борис Летов", "ИПМКН-21", 4.62)
     print(alice.display_info())
     print(bob.display_info())
 
-    # Задание 7 (средняя): Перегрузка оператора +
+    # Задание 7: Перегрузка оператора +
     print("\n2. Перегрузка оператора + (объединение в проект):")
     project_collab = alice + bob
     print(project_collab)
 
-    # Задание 4 (средняя) + Задание 2 (повышенная): Фигуры и Factory
+    # Задание 4 + Задание 2: Фигуры и Factory
     print("\n3. Фабрика фигур (ShapeFactory):")
     triangle = ShapeFactory.produce("triangle", 6.0)
     ellipse = ShapeFactory.produce("ellipse", 5.0, 3.0)
@@ -30,7 +30,7 @@ def main() -> None:
         f"Периметр = {ellipse.perimeter():.2f}"
     )
 
-    # Задание 6 (повышенная): Расширение встроенного list
+    # Задание 6: Расширение встроенного list
     print("\n4. Расширенный список (ExtendedList):")
     sample_data = ExtendedList([4, 7, 2, 4, 10, 15, 2, 8])
     print(f"Исходный список: {sample_data}")
